@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
 import { createProduct, getAllProducts } from "../services/service";
-import { useRef } from "react";
 
 export default function ShoppingCartForm({ setProducts }) {
   const [name, setName] = useState("");
