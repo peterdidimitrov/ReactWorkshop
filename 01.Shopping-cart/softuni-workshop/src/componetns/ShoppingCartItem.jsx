@@ -2,6 +2,7 @@ export default function ShoppingCartItem({
   item,
   handleBuyItem,
   handleRemoveItem,
+  setProducts,
 }) {
   return (
     <article
@@ -21,7 +22,7 @@ export default function ShoppingCartItem({
         <button
           className="shopping-cart__item--buy-btn"
           onClick={(e) => {
-            handleBuyItem(item._id);
+            handleBuyItem(item._id, setProducts);
           }}
         >
           <span>Buy</span>

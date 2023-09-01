@@ -1,9 +1,9 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { createProduct, getAllProducts } from "../services/service";
-import ShoppingCart from "./ShoppingCart";
+import { useRef } from "react";
 
-export default function ShoppingCartForm() {
+export default function ShoppingCartForm({ setProducts }) {
   const [name, setName] = useState("");
   const [cost, setCost] = useState("");
   const [imageURL, setImageURL] = useState("");
@@ -16,6 +16,12 @@ export default function ShoppingCartForm() {
       imgUrl: imageURL,
       isBought: false,
     });
+
+    getAllProducts().then((response) => setProducts(Object.values(response)));
+
+    setName("");
+    setCost("");
+    setImageURL("");
   };
   return (
     <form onSubmit={onSubmitHandler}>

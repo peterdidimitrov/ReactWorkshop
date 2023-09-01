@@ -10,20 +10,23 @@ export default function ShoppingCart() {
     .filter((product) => product.isBought)
     .reduce((acc, curr) => acc + Number(curr.cost), 0);
 
-  const refreshTheData = useEffect(() => {
+  useEffect(() => {
     getAllProducts().then((response) => setProducts(Object.values(response)));
   }, []);
 
   return (
     <section className="shopping-cart__container">
-      <ShoppingCartForm />
+      <ShoppingCartForm setProducts={setProducts} />
       <section className="shopping-cart__items-list">
         {products.map((product) => (
           <ShoppingCartItem
             key={product._id}
             item={product}
-            handleBuyItem={(productId) => buyProduct(productId)}
-            handleRemoveItem={(productId) => removeProduct(productId)}
+            handleBuyItem={(productId) => buyProduct(productId, setProducts)}
+            handleRemoveItem={(productId) =>
+              removeProduct(productId, setProducts)
+            }
+            setProducts={setProducts}
           />
         ))}
       </section>
